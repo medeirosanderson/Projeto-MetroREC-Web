@@ -1,0 +1,285 @@
+:root {
+  --cor-fundo: #639ecb;
+  --cor-card: #9dc3e9; 
+  --cor-texto-principal: #ffffff;
+  --cor-texto-secundaria: #000000;
+  --cor-texto-suave: #406487;
+  --cor-borda: #373839;
+  --cor-primaria: #0b5cad;
+  --cor-primaria-escura: #084a8c;
+  --cor-centro: #265809;
+  --cor-sul: #293abb;
+  --raio: 12px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  background: var(--cor-fundo);
+  color: var(--cor-texto-principal);
+  line-height: 1.5;
+}
+
+/* ---------- Estrutura da página ---------- */
+
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.cabecalho {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.cabecalho h1 {
+  margin: 0;
+}
+
+.cabecalho p {
+  margin: 4px 0 0;
+  color: var(--cor-texto-principal);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  background: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+/* ---------- Formulários e botões ---------- */
+
+select,
+input[type='text'] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  font: inherit;
+  background: whitesmoke;
+  color: var(--cor-texto-suave);
+}
+
+select:focus,
+input[type='text']:focus {
+  outline: 2px solid var(--cor-texto-secundaria);
+  outline-offset: 1px;
+}
+
+button {
+  font: inherit;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  background: var(--cor-texto-suave);
+  color: var(--cor-texto-principal);
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--cor-primaria-escura);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.botao-secundario {
+  background: transparent;
+  color: var(--cor-texto-secundaria);
+  border: 1px solid var(--cor-primaria);
+}
+
+.botao-secundario:hover:not(:disabled) {
+  background: var(--cor-fundo);
+}
+
+/* ---------- Calculadora de rota ---------- */
+
+.campos {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.botao-calcular {
+  width: 100%;
+}
+
+.resultado {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.trajeto {
+  margin: 0 0 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.numero {
+  background: var(--cor-fundo);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--cor-texto-secundaria);
+}
+
+.numero strong {
+  display: block;
+  font-size: 1.3rem;
+  color: var(--cor-texto-principal);
+}
+
+.caminho {
+  list-style: none;
+  margin: 16px 0 0 8px;
+  padding: 0;
+  border-left: 3px solid var(--cor-primaria);
+  color: var(--cor-borda);
+}
+
+.caminho li {
+  position: relative;
+  padding: 4px 0 4px 20px;
+}
+
+.caminho li::before {
+  content: '';
+  position: absolute;
+  left: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--cor-primaria);
+}
+
+/* ---------- Lista de estações ---------- */
+
+.linha-busca {
+  display: flex;
+  gap: 8px;
+}
+
+.filtros {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+.filtros button {
+  background: white;
+  color: var(--cor-texto-secundaria);
+  border: 1px solid var(--cor-borda);
+  padding: 6px 14px;
+}
+
+.filtros button:hover:not(:disabled) {
+  background: var(--cor-fundo);
+}
+
+.filtros button:disabled {
+  background: var(--cor-primaria);
+  color: white;
+  border-color: var(--cor-primaria);
+  opacity: 1;
+  cursor: default;
+}
+
+.contador {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  color: var(--cor-texto-suave);
+}
+
+.estacoes-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 420px;
+  overflow-y: auto;
+  color: var(--cor-borda);
+}
+
+.estacoes-lista li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 999px;
+  color: white;
+  background: var(--cor-texto-suave);
+}
+
+.badge-centro {
+  background: var(--cor-centro);
+}
+
+.badge-sul {
+  background: var(--cor-sul);
+}
+
+.item-acoes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.botao-mini {
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  background: white;
+  color: var(--cor-primaria);
+  border: 1px solid var(--cor-primaria);
+}
+
+.botao-mini:hover:not(:disabled) {
+  background: var(--cor-primaria);
+  color: white;
+}
