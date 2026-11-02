@@ -1,6 +1,7 @@
 import { useState, type ChangeEvent } from 'react'
 import { calcularRota } from '../services/metroService'
 import type { Estacao, Rota } from '../types/metro'
+import TrajetoVertical from './TrajetoVertical'
 
 interface CalculadoraRotaProps {
 estacoes: Estacao[]
@@ -44,23 +45,29 @@ return (
     <h2>Calcular rota</h2>
 
     <div className="campos">
+        <label>
+        Origem
         <select value={origemId} onChange={handleOrigem}>
-        <option value="">Origem</option>
-        {estacoes.map((estacao) => (
+            <option value="">Selecione...</option>
+            {estacoes.map((estacao) => (
             <option key={estacao.id} value={estacao.id}>
-            {estacao.nome}
+                {estacao.nome}
             </option>
-        ))}
+            ))}
         </select>
+        </label>
 
+        <label>
+        Destino
         <select value={destinoId} onChange={handleDestino}>
-        <option value="">Destino</option>
-        {estacoes.map((estacao) => (
+            <option value="">Selecione...</option>
+            {estacoes.map((estacao) => (
             <option key={estacao.id} value={estacao.id}>
-            {estacao.nome}
+                {estacao.nome}
             </option>
-        ))}
+            ))}
         </select>
+        </label>
     </div>
 
     <button
@@ -68,7 +75,7 @@ return (
         onClick={handleCalcular}
         disabled={!origemId || !destinoId}
     >
-        Calcular
+        Calcular rota
     </button>
 
     {rotaAtual && (
@@ -92,11 +99,7 @@ return (
             </div>
         </div>
 
-        <ol className="caminho">
-            {rotaAtual.caminho.map((estacao) => (
-            <li key={estacao.id}>{estacao.nome}</li>
-            ))}
-        </ol>
+        <TrajetoVertical caminho={rotaAtual.caminho} />
         </div>
     )}
     </section>

@@ -3,6 +3,7 @@ import CalculadoraRota from './components/CalculadoraRota'
 import ListaEstacoes from './components/ListaEstacoes'
 import { listarEstacoes } from './services/metroService'
 import type { Estacao } from './types/metro'
+import silhueta from './assets/silhueta-recife.svg'
 
 function App() {
   const [estacoes, setEstacoes] = useState<Estacao[]>([])
@@ -16,10 +17,15 @@ function App() {
   return (
     <div className="app">
       <header className="cabecalho">
-        <h1>🚇 Metrô do Recife</h1>
-        <p>Consulta de estações e rotas</p>
+        <div>
+          <p className="eyebrow">PLANEJADOR DE ROTAS</p>
+          <h1>Metrô do Recife</h1>
+          <p className="subtitulo">
+            Escolha onde embarcar e onde descer. A gente mostra o caminho.
+          </p>
+        </div>
+        <img className="silhueta" src={silhueta} alt="" />
       </header>
-
       <main className="layout">
         <CalculadoraRota
           estacoes={estacoes}
